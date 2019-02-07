@@ -11,30 +11,39 @@ namespace _2019WCSD3354WEEK05
         static void Main(string[] args)
         {
             var a = new TestQuestion2();
-            a.PlayingWithForLoops();
+            //a.PlayingWithForLoops();
+            Console.ReadLine();
+
+            var b = new birthdayParty();
+            b.setupPartyList();
+            b.printPartyList();
         }
     }
 
+
     class TestQuestion2
     {
-        public int myFavoriteVariable = 0;
-
+        public int myFavouriteVariable = 0;
         public void PlayingWithForLoops()
         {
-            // write a For Loop to Add 10 Numbers
-            while (MyMethod())
+            for (; MyMethod();)
             {
-                if (myFavoriteVariable > 10)
+                if (myFavouriteVariable > 10)
                 {
-                    Console.WriteLine("i am so out of here!");
+                    Console.WriteLine("i am so out of here");
+
                     break;
                 }
-                Console.WriteLine("oh no I have to go through this stupid loop again...");
+                else
+                {
+                    Console.WriteLine("oh no i have to go through this again");
+
+                }
             }
         }
         public bool MyMethod()
         {
-            myFavoriteVariable++;
+            myFavouriteVariable++;
             return true;
         }
     }
@@ -45,15 +54,15 @@ namespace _2019WCSD3354WEEK05
         {
             dog_name = name;
             dog_breed = breed;
+
         }
 
         public string dog_name;
         public string dog_breed;
-        public dog next_dog;
-        public dog prev_dog;
-
+        public dog nextdog;
+        public dog previousdog;
     }
-    class birthday_party
+    class birthdayParty
     {
         public dog peanut;
         public dog fifi;
@@ -62,6 +71,37 @@ namespace _2019WCSD3354WEEK05
 
         public dog head;
         public dog tail;
-        public dog temporary;
+        public dog temp;
+
+        public void setupPartyList()
+        {
+            peanut = new dog("peanut", "bichon");
+            fifi = new dog("fifi", "poodle");
+            clarence = new dog("Clarence", "German Sheppard");
+            roy = new dog("roy", "beagle");
+
+            peanut.previousdog = null;
+            peanut.nextdog = fifi;
+            fifi.previousdog = peanut;
+            fifi.nextdog = clarence;
+            clarence.previousdog = fifi;
+            clarence.nextdog = roy;
+            roy.previousdog = clarence;
+            roy.nextdog = null;
+
+            head = peanut;
+            tail = roy;
+        }
+
+        public string printPartyList(dog startOfList, dog endOfList)
+        {
+            string inviteList = "---";
+            temp = startOfList;
+            while (temp.nextdog != null)
+            {
+                inviteList += temp.dog_name + "*---";
+            }
+            return inviteList;
+        }
     }
 }
